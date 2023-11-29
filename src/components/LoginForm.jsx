@@ -8,6 +8,35 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const { login, setUserId, setUserName } = useAuth();
 
+  // const handleSubmit = async () => {
+  //   console.log('送信時', user_name, password);
+  //   console.log('json', JSON.stringify({ user_name: user_name, password: password }));
+  //   try {
+  //     // Renderで.envファイルの作成手順
+  //     // renderのフロントエンド側でEnvironmentでシークレットファイル選択。
+  //     // Filenameは.env
+  //     // ContentsはVITE_REACT_APP_BACKEND_URL=バックエンドのrenderのURL
+  //     const url = import.meta.env.VITE_DEVELOPMENT_BACKEND_URL || import.meta.env.VITE_PRODUCTION_BACKEND_URL;
+  //     console.log('最終的なURLは?', url);
+
+  //     const response = await fetch(url + '/login', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ user_name: user_name, password: password }),
+  //     });
+  //     const data = await response.json();
+  //     if (response.ok) {
+  //       setUserId(data[0].id);
+  //       setUserName(user_name);
+  //       login();
+  //       navigate('/items'); // ここでItemsListコンポーネントへ遷移
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   const handleSubmit = async () => {
     console.log('送信時', user_name, password);
     console.log('json', JSON.stringify({ user_name: user_name, password: password }));
@@ -19,20 +48,12 @@ const LoginForm = () => {
       const url = import.meta.env.VITE_DEVELOPMENT_BACKEND_URL || import.meta.env.VITE_PRODUCTION_BACKEND_URL;
       console.log('最終的なURLは?', url);
 
-      const response = await fetch(url + '/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ user_name: user_name, password: password }),
+      const response = await fetch(url + '/aws3', {
+        method: 'GET',
       });
       const data = await response.json();
-      if (response.ok) {
-        setUserId(data[0].id);
-        setUserName(user_name);
-        login();
-        navigate('/items'); // ここでItemsListコンポーネントへ遷移
-      }
+
+      console.logA('data::レスポンス', data);
     } catch (error) {
       console.log(error);
     }
