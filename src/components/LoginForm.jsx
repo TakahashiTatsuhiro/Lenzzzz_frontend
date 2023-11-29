@@ -7,12 +7,13 @@ const LoginForm = () => {
 	const [password, setPassword] = useState('');
 	const navigate = useNavigate();
 	const { login, setUserId, setUserName } = useAuth();
-
+	
 	const handleSubmit = async () => {
 		console.log('送信時',user_name, password);
 		console.log('json', JSON.stringify({ user_name: user_name, password:password }));
 		try {
-			const response = await fetch('http://localhost:3000/login', {
+			const url = import.meta.env.VITE_BACKEND_URL || process.env.BACKEND_URL;
+			const response = await fetch( url + '/login', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
