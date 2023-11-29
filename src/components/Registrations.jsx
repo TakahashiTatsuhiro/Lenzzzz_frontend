@@ -51,7 +51,9 @@ const Registrations = () => {
 
 		//送信
 		try {
-			const url = 'https://lenzzzz-backend.onrender.com';
+			// const url = 'https://lenzzzz-backend.onrender.com';
+			const url = "http://localhost:3000";
+
 			const response = await fetch(url + '/registrations', {
 				method: 'POST',
 				headers: {
@@ -68,8 +70,8 @@ const Registrations = () => {
 					warranty_photo: warrantyPhoto,
 				}),
 			});
-			
-			const data = await response.json();
+
+			// const data = await response.json();
 			if (response.ok) {
 				window.alert('登録しました！');
 			} else {

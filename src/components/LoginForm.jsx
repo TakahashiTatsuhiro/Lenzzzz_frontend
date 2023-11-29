@@ -12,14 +12,9 @@ const LoginForm = () => {
 		console.log('送信時', user_name, password);
 		console.log('json', JSON.stringify({ user_name: user_name, password: password }));
 		try {
-			// let url = process.env.BACKEND_URL;
-            // try {
-            //  url = import.meta.env.VITE_BACKEND_URL;
-            // } catch {
-            //  url = process.env.BACKEND_URL;
-            // }
-			const url = "https://lenzzzz-backend.onrender.com";
-			// const url = "http://localhost:3000/";
+			// const url = "https://lenzzzz-backend.onrender.com";
+			const url = "http://localhost:3000";
+
 			const response = await fetch(url + '/login', {
 				method: 'POST',
 				headers: {
@@ -69,7 +64,7 @@ const LoginForm = () => {
 					placeholder='パスワードを入力'
 					onChange={(e) => setPassword(e.target.value)}
 				/>
-				<button className='login__btn' onClick={handleSubmitTest}>
+				<button className='login__btn' onClick={handleSubmit}>
 					ログイン
 				</button>
 			</div>
