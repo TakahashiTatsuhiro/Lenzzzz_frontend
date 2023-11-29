@@ -13,6 +13,7 @@ const LoginForm = () => {
     console.log('json', JSON.stringify({ user_name: user_name, password: password }));
     try {
       let url = process.env.BACKEND_URL;
+      console.log('process.env.BACKEND_URL', process.env.BACKEND_URL);
       try {
         console.log('本番環境入ってきた！');
         url = process.env.BACKEND_URL;
