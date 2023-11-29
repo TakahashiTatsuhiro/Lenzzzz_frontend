@@ -12,24 +12,11 @@ const LoginForm = () => {
     console.log('送信時', user_name, password);
     console.log('json', JSON.stringify({ user_name: user_name, password: password }));
     try {
-      // let url = import.meta.env.VITE_REACT_APP_BACKEND_URL;
-      // console.log('import.meta.env.VITE_REACT_APP_BACKEND_URL', import.meta.env.VITE_REACT_APP_BACKEND_URL);
-      // try {
-      //   console.log('本番環境入ってきた！');
-      //   url = import.meta.env.VITE_REACT_APP_BACKEND_URL;
-      //   console.log('url:::', url);
-      // } catch {
-      //   console.log('開発環境入ってきた！');
-      //   url = import.meta.env.VITE_BACKEND_URL;
-      //   console.log('url:::', url);
-      // }
-
       // Renderで.envファイルの作成手順
       // renderのフロントエンド側でEnvironmentでシークレットファイル選択。
       // Filenameは.env
       // ContentsはVITE_REACT_APP_BACKEND_URL=バックエンドのrenderのURL
-      const url = import.meta.env.VITE_BACKEND_URL || import.meta.env.VITE_REACT_APP_BACKEND_URL;
-
+      const url = import.meta.env.VITE_DEVELOPMENT_BACKEND_URL || import.meta.env.VITE_PRODUCTION_BACKEND_URL;
       console.log('最終的なURLは?', url);
 
       const response = await fetch(url + '/login', {
