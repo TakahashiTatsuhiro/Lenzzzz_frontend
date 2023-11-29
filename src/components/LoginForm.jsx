@@ -3,77 +3,71 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 const LoginForm = () => {
-	const [user_name, setUsername] = useState('');
-	const [password, setPassword] = useState('');
-	const navigate = useNavigate();
-	const { login, setUserId, setUserName } = useAuth();
+  const [user_name, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const { login, setUserId, setUserName } = useAuth();
 
-	const handleSubmit = async () => {
-		console.log('送信時', user_name, password);
-		console.log('json', JSON.stringify({ user_name: user_name, password: password }));
-		try {
-			// let url = process.env.BACKEND_URL;
-            // try {
-            //  url = import.meta.env.VITE_BACKEND_URL;
-            // } catch {
-            //  url = process.env.BACKEND_URL;
-            // }
-			const url = "https://lenzzzz-backend.onrender.com";
-			const response = await fetch(url + '/login', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ user_name: user_name, password: password }),
-			});
-			const data = await response.json();
-			if (response.ok) {
-				setUserId(data[0].id);
-				setUserName(user_name);
-				login();
-				navigate('/items'); // ここでItemsListコンポーネントへ遷移
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
+  const handleSubmit = async () => {
+    console.log('送信時', user_name, password);
+    console.log('json', JSON.stringify({ user_name: user_name, password: password }));
+    try {
+      let url = process.env.BACKEND_URL;
+      try {
+        url = import.meta.env.VITE_BACKEND_URL;
+        console.log('本番環境入ってきた！');
+      } catch {
+        url = process.env.BACKEND_URL;
+        console.log('開発環境入ってきた！');
+      }
+      console.log('url:::', url);
 
-	const handleSubmitTest = async () => {
-		try {
-			setUserId(1);
-			setUserName(user_name);
-			login(); // ログイン状態を更新
-			navigate('/items'); // ここでItemsListコンポーネントへ遷移
-		} catch (error) {
-			console.log(error);
-		}
-	};
+      //   const url = 'https://lenzzzz-backend.onrender.com';
+      const response = await fetch(url + '/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user_name: user_name, password: password }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setUserId(data[0].id);
+        setUserName(user_name);
+        login();
+        navigate('/items'); // ここでItemsListコンポーネントへ遷移
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-	return (
-		<div className='login__container'>
-			<div className='login__header'></div>
-			<div className='login__box'>
-				<h1 className='login__title'>Lenzzzz へようこそ</h1>
-				<p className='login__input-title'>ユーザー名</p>
-				<input
-					className='login__input'
-					type='text'
-					placeholder='ユーザー名を入力'
-					onChange={(e) => setUsername(e.target.value)}
-				/>
-				<p className='login__input-title'>パスワード</p>
-				<input
-					className='login__input'
-					type='password'
-					placeholder='パスワードを入力'
-					onChange={(e) => setPassword(e.target.value)}
-				/>
-				<button className='login__btn' onClick={handleSubmit}>
-					ログイン
-				</button>
-			</div>
-		</div>
-	);
+  const handleSubmitTest = async () => {
+    try {
+      setUserId(1);
+      setUserName(user_name);
+      login(); // ログイン状態を更新
+      navigate('/items'); // ここでItemsListコンポーネントへ遷移
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <div className="login__container">
+      <div className="login__header"></div>
+      <div className="login__box">
+        <h1 className="login__title">Lenzzzz へようこそ</h1>
+        <p className="login__input-title">ユーザー名</p>
+        <input className="login__input" type="text" placeholder="ユーザー名を入力" onChange={(e) => setUsername(e.target.value)} />
+        <p className="login__input-title">パスワード</p>
+        <input className="login__input" type="password" placeholder="パスワードを入力" onChange={(e) => setPassword(e.target.value)} />
+        <button className="login__btn" onClick={handleSubmit}>
+          ログイン
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default LoginForm;
