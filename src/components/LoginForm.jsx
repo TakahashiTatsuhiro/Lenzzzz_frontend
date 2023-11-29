@@ -14,13 +14,14 @@ const LoginForm = () => {
     try {
       let url = process.env.BACKEND_URL;
       try {
-        url = import.meta.env.VITE_BACKEND_URL;
         console.log('本番環境入ってきた！');
-      } catch {
         url = process.env.BACKEND_URL;
+        console.log('url:::', url);
+      } catch {
         console.log('開発環境入ってきた！');
+        url = import.meta.env.VITE_BACKEND_URL;
+        console.log('url:::', url);
       }
-      console.log('url:::', url);
 
       //   const url = 'https://lenzzzz-backend.onrender.com';
       const response = await fetch(url + '/login', {
