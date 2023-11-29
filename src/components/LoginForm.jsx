@@ -12,11 +12,11 @@ const LoginForm = () => {
     console.log('送信時', user_name, password);
     console.log('json', JSON.stringify({ user_name: user_name, password: password }));
     try {
-      let url = process.env.BACKEND_URL;
-      console.log('process.env.BACKEND_URL', process.env.BACKEND_URL);
+      let url = process.env.REACT_APP_BACKEND_URL;
+      console.log('process.env.REACT_APP_BACKEND_URL', process.env.REACT_APP_BACKEND_URL);
       try {
         console.log('本番環境入ってきた！');
-        url = process.env.BACKEND_URL;
+        url = process.env.REACT_APP_BACKEND_URL;
         console.log('url:::', url);
       } catch {
         console.log('開発環境入ってきた！');
