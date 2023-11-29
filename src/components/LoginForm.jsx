@@ -19,6 +19,7 @@ const LoginForm = () => {
             //  url = process.env.BACKEND_URL;
             // }
 			const url = "https://lenzzzz-backend.onrender.com";
+			// const url = "http://localhost:3000/";
 			const response = await fetch(url + '/login', {
 				method: 'POST',
 				headers: {
@@ -68,7 +69,7 @@ const LoginForm = () => {
 					placeholder='パスワードを入力'
 					onChange={(e) => setPassword(e.target.value)}
 				/>
-				<button className='login__btn' onClick={handleSubmit}>
+				<button className='login__btn' onClick={handleSubmitTest}>
 					ログイン
 				</button>
 			</div>
