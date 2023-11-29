@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import dotenv from 'dotenv';
-dotenv.config();
 
 const LoginForm = () => {
   const [user_name, setUsername] = useState('');
