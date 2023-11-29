@@ -1,0 +1,166 @@
+body {
+  margin: 0;
+}
+
+.login__container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+.login__header {
+  width: 100%;
+  height: 25%;
+  background: #dcdcdc;
+}
+
+.login__box {
+  display: flex;
+  flex-flow: column;
+  height: 75%;
+  width: 86%;
+  padding: 0 7%;
+}
+
+.login__title {
+  margin: 40px 0 20px 0;
+  font-size: 1.8em;
+}
+
+.login__input-title {
+  margin: 5px 0;
+  font-size: 0.8em;
+  color: #808080;
+}
+
+.login__input {
+  padding: 10px;
+  margin-bottom: 13px;
+  border: solid 1px #808080;
+  border-radius: 3px;
+}
+
+.login__btn {
+  background: rgb(56, 56, 232);
+  color: #ffffff;
+  border-radius: 3px;
+  border: none;
+  font-size: 0.8em;
+  cursor: pointer;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.items__container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+
+.items__header {
+  height: 30px;
+  width: 90%;
+  background-color: #ccc;
+  display: flex;
+  justify-content: space-between;
+  padding: 2% 5%;
+}
+
+.items__serach {
+  border: solid 0.3px rgb(119, 119, 119);
+  border-radius: 3px;
+  width: 80%;
+  margin: 0 0 0 auto;
+  padding-left: 10px;
+}
+
+.items__add {
+  height: 30px;
+  width: 90%;
+  display: flex;
+  justify-content: right;
+  padding: 10px 5px;
+}
+
+.items__btn {
+  background: rgb(56, 56, 232);
+  color: #ffffff;
+  border-radius: 3px;
+  border: none;
+  font-size: 0.5em;
+  cursor: pointer;
+  padding: 8px 12px;
+}
+
+.items__list {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 5% 0 5%;
+}
+
+.item {
+  border: solid 0.7px rgba(109, 109, 109, 1);
+  margin-bottom: 5%;
+  height: 150px;
+  width: 47%;
+  align-items: center;
+  background-color: rgba(53, 52, 52, 0.188);
+  position: relative;
+  display: flex;
+  flex-flow: column;
+}
+
+.item__img {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 60%;
+  height: auto;
+}
+
+.item__name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 15%;
+  margin: 0;
+  color: #000000;
+  font-size: 0.7em;
+  background-color: rgba(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registration__container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-flow: column;
+}
+
+.registration__box {
+  flex-flow: column;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 5% 0 5%;
+}
+
+.registration__footer {
+  height: 30px;
+  width: 90%;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  padding: 2% 5%;
+}
