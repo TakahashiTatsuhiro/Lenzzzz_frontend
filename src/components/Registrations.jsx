@@ -1,9 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 const Registrations = () => {
 	const navigate = useNavigate();
+	const { userId } = useAuth();
+
 	const [productName, setProductName] = useState(false);
 	const [purchaseDate, setPurchaseDate] = useState(false);
 	const [warrantyNumber, setWarrantyNumber] = useState(false);
@@ -31,8 +34,8 @@ const Registrations = () => {
 		navigate('/items');
 	};
 
-	const handleSubmit = () => {
-		//購入日を把握する
+	const handleSubmit = async () => {
+		//デバッグ用
 		console.log('productName', productName);
 		console.log('購入日', purchaseDate);
 		console.log('保証', warrantyNumber);
@@ -44,6 +47,36 @@ const Registrations = () => {
 		//未入力チェック
 		if (!productName || !purchaseDate || !warrantyNumber || !warrantyUnit || !retailer) {
 			console.log('未入力だよ');
+		}
+
+		//送信
+		try {
+			const url = 'https://lenzzzz-backend.onrender.com';
+			const response = await fetch(url + '/registrations', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					user_id: userId,
+					product_name: productName,
+					purchase_date: purchaseDate,
+					warranty_number: warrantyNumber,
+					warranty_unit: warrantyUnit,
+					retailer: retailer,
+					product_photo: productPhoto,
+					warranty_photo: warrantyPhoto,
+				}),
+			});
+			
+			const data = await response.json();
+			if (response.ok) {
+				window.alert('登録しました！');
+			} else {
+				window.alert('登録に失敗しました！');
+			}
+		} catch (error) {
+			console.log(error);
 		}
 	};
 
