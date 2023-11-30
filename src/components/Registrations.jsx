@@ -5,11 +5,16 @@ import { useAuth } from '../contexts/AuthContext';
 
 const Registrations = () => {
   const navigate = useNavigate();
+  const { userId } = useAuth();
   const handleItems = () => {
     navigate('/items');
   };
-
-  const { userId } = useAuth();
+  const handleLogin = () => {
+    navigate('/login');
+  };
+  const handleItemLists = () => {
+    navigate('/items');
+  };
 
   const [productName, setProductName] = useState(false);
   const [purchaseDate, setPurchaseDate] = useState(false);
@@ -92,7 +97,10 @@ const Registrations = () => {
   return (
     <div className="registration__container">
       <div className="items__header">
-        <button className="items__btn" onClick={handleItems}>
+        <button className="items__btn" onClick={handleLogin}>
+          ログアウト
+        </button>
+        <button className="items__btn" onClick={handleItemLists}>
           戻る
         </button>
       </div>

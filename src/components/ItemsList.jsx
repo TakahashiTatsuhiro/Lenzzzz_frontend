@@ -7,12 +7,22 @@ const ItemsList = () => {
   const { userId } = useAuth();
   const [items, setItems] = useState([]);
 
+  const handleLogin = () => {
+    navigate('/login');
+  };
+  const handleRegistration = () => {
+    navigate('/registrations');
+  };
+  const handleItemSelect = (idx) => {
+    navigate(`/Items/show/${idx}`);
+  };
+
   useEffect(() => {
     const getItems = async () => {
       try {
         // const url = 'https://lenzzzz-backend.onrender.com';
         const url = 'http://localhost:3000';
-        const response = await fetch(url + `/items/${userId}`);
+        const response = await fetch(url + `/${userId}/items`);
         const data = await response.json();
         if (response.ok) {
           console.log('data', data);
@@ -26,14 +36,6 @@ const ItemsList = () => {
     };
     getItems();
   }, []);
-
-  const handleLogin = () => {
-    navigate('/login');
-  };
-
-  const handleRegistration = () => {
-    navigate('/registrations');
-  };
 
   return (
     <div className="items__container">
@@ -59,6 +61,7 @@ const ItemsList = () => {
                 className="item__img"
                 src={item.product_photo}
                 alt={item.product_name}
+                onClick={() => handleItemSelect(idx)}
               />
               <p className="item__name">{item.product_name}</p>
             </div>

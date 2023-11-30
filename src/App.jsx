@@ -6,35 +6,44 @@ import ItemsList from './components/ItemsList';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Registrations from './components/Registrations';
+import DetailItem from './components/DetailItem';
 
 function App() {
-	return (
-		<AuthProvider>
-			<Router>
-				<Routes>
-					<Route exact path='/' element={<LoginForm />} />
-					<Route exact path='/login' element={<LoginForm />} />
-					<Route
-						path='/items'
-						element={
-							<ProtectedRoute>
-								<ItemsList />
-							</ProtectedRoute>
-						}
-					/>
-					<Route
-						exact
-						path='/registrations'
-						element={
-							<ProtectedRoute>
-								<Registrations />
-							</ProtectedRoute>
-						}
-					/>
-				</Routes>
-			</Router>
-		</AuthProvider>
-	);
+  return (
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<LoginForm />} />
+          <Route exact path="/login" element={<LoginForm />} />
+          <Route
+            path="/items"
+            element={
+              <ProtectedRoute>
+                <ItemsList />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/items/show/:index"
+            element={
+              <ProtectedRoute>
+                <DetailItem />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            exact
+            path="/registrations"
+            element={
+              <ProtectedRoute>
+                <Registrations />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  );
 }
 
 export default App;
