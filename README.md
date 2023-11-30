@@ -1,8 +1,7 @@
-# React + Vite
+# Lenzzzz とは
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+この Repository は、
 
-Currently, two official plugins are available:
+`https://github.com/TakahashiTatsuhiro/Lenzzzz_backend`のフロントエンド側のファイルになります。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+上記リンクの README を参考にセットアップしてください。
