@@ -1,11 +1,35 @@
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { useEffect, useState } from 'react';
 
 const ItemsList = () => {
 	const navigate = useNavigate();
+	const { userId } = useAuth();
+	const [items, setItems] = useState([]);
+
+	useEffect(() => {
+		const getItems = async () => {
+			try {
+				// const url = 'https://lenzzzz-backend.onrender.com';
+				const url = 'http://localhost:3000';
+				const response = await fetch(url + `/items/${userId}`);
+				const data = await response.json();
+				if (response.ok) {
+					console.log('data', data);
+					setItems(data);
+				} else {
+					setItems([]);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		getItems();
+	}, []);
 
 	const handleLogin = () => {
 		navigate('/login');
-	}
+	};
 
 	const handleRegistration = () => {
 		navigate('/registrations');
@@ -25,46 +49,14 @@ const ItemsList = () => {
 				</button>
 			</div>
 			<div className='items__list'>
-				<div className='item'>
-					<img className='item__img' src='./src/assets/bousaisyoku.png' alt='防災食' />
-					<p className='item__name'>防災食</p>
-				</div>
-				<div className='item'>
-					<img className='item__img' src='./src/assets/eacon.png' alt='防災食' />
-					<p className='item__name'>エアコン</p>
-				</div>
-				<div className='item'>
-					<img className='item__img' src='./src/assets/reizouko.png' alt='防災食' />
-					<p className='item__name'>冷蔵庫</p>
-				</div>
-				<div className='item'>
-					<img className='item__img' src='./src/assets/rimokon.png' alt='防災食' />
-					<p className='item__name'>リモコン</p>
-				</div>
-				<div className='item'>
-					<img className='item__img' src='./src/assets/sentaku.png' alt='防災食' />
-					<p className='item__name'>洗濯機</p>
-				</div>
-				<div className='item'>
-					<img className='item__img' src='./src/assets/soujiki.png' alt='防災食' />
-					<p className='item__name'>掃除機</p>
-				</div>
-				<div className='item'>
-					<img className='item__img' src='./src/assets/soujiki.png' alt='防災食' />
-					<p className='item__name'>掃除機</p>
-				</div>
-				<div className='item'>
-					<img className='item__img' src='./src/assets/soujiki.png' alt='防災食' />
-					<p className='item__name'>掃除機</p>
-				</div>
-				<div className='item'>
-					<img className='item__img' src='./src/assets/soujiki.png' alt='防災食' />
-					<p className='item__name'>掃除機</p>
-				</div>
-				<div className='item'>
-					<img className='item__img' src='./src/assets/soujiki.png' alt='防災食' />
-					<p className='item__name'>掃除機</p>
-				</div>
+				{items.map((item, idx) => {
+					return (
+						<div className='item' key={idx}>
+							<img className='item__img' src={item.product_photo} alt={item.product_name} />
+							<p className='item__name'>{item.product_name}</p>
+						</div>
+					);
+				})}
 			</div>
 		</div>
 	);
