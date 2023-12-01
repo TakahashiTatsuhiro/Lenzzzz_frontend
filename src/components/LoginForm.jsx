@@ -10,13 +10,18 @@ const LoginForm = () => {
 
   const handleSubmit = async () => {
     console.log('送信時', user_name, password);
-    console.log('json', JSON.stringify({ user_name: user_name, password: password }));
+    console.log(
+      'json',
+      JSON.stringify({ user_name: user_name, password: password })
+    );
     try {
       // Renderで.envファイルの作成手順
       // renderのフロントエンド側でEnvironmentでシークレットファイル選択。
       // Filenameは.env
       // ContentsはVITE_REACT_APP_BACKEND_URL=バックエンドのrenderのURL
-      const url = import.meta.env.VITE_DEVELOPMENT_BACKEND_URL || import.meta.env.VITE_PRODUCTION_BACKEND_URL;
+      const url =
+        import.meta.env.VITE_DEVELOPMENT_BACKEND_URL ||
+        import.meta.env.VITE_PRODUCTION_BACKEND_URL;
       console.log('最終的なURLは?', url);
 
       const response = await fetch(url + '/login', {
@@ -24,7 +29,7 @@ const LoginForm = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ user_name: user_name, password: password }),
+        body: JSON.stringify([{ user_name: user_name, password: password }]),
       });
       const data = await response.json();
       if (response.ok) {
@@ -55,9 +60,19 @@ const LoginForm = () => {
       <div className="login__box">
         <h1 className="login__title">Lenzzzz へようこそ</h1>
         <p className="login__input-title">ユーザー名</p>
-        <input className="login__input" type="text" placeholder="ユーザー名を入力" onChange={(e) => setUsername(e.target.value)} />
+        <input
+          className="login__input"
+          type="text"
+          placeholder="ユーザー名を入力"
+          onChange={(e) => setUsername(e.target.value)}
+        />
         <p className="login__input-title">パスワード</p>
-        <input className="login__input" type="password" placeholder="パスワードを入力" onChange={(e) => setPassword(e.target.value)} />
+        <input
+          className="login__input"
+          type="password"
+          placeholder="パスワードを入力"
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <button className="login__btn" onClick={handleSubmit}>
           ログイン
         </button>
