@@ -7,6 +7,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Registrations from './components/Registrations';
 import DetailItem from './components/DetailItem';
+import RegistUser from './components/RegistUser';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<LoginForm />} />
           <Route exact path="/login" element={<LoginForm />} />
+          <Route exact path="/users/new" element={<RegistUser />} />
           <Route
             path="/items"
             element={

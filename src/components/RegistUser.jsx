@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
-const LoginForm = () => {
+const RegistUser = () => {
   const [user_name, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -10,48 +10,42 @@ const LoginForm = () => {
 
   const handleSubmit = async () => {
     console.log('送信時', user_name, password);
-    console.log(
-      'json',
-      JSON.stringify({ user_name: user_name, password: password })
-    );
     try {
-      // Renderで.envファイルの作成手順
-      // renderのフロントエンド側でEnvironmentでシークレットファイル選択。
-      // Filenameは.env
-      // ContentsはVITE_REACT_APP_BACKEND_URL=バックエンドのrenderのURL
       const url =
         import.meta.env.VITE_DEVELOPMENT_BACKEND_URL ||
         import.meta.env.VITE_PRODUCTION_BACKEND_URL;
       console.log('最終的なURLは?', url);
 
-      const response = await fetch(url + '/login', {
+      const response = await fetch(url + '/users/new', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify([{ user_name: user_name, password: password }]),
+        body: JSON.stringify({ user_name: user_name, password: password }),
       });
       const data = await response.json();
       if (response.ok) {
-        setUserId(data[0].id);
+        setUserId(Number(data));
         setUserName(user_name);
         login();
+        alert('登録が完了しました。');
         navigate('/items'); // ここでItemsListコンポーネントへ遷移
       }
     } catch (error) {
       console.log(error);
+      alert('登録に失敗しました。');
     }
   };
 
-  const handleRegistUser = () => {
-    navigate('/users/new');
+  const handleLogin = () => {
+    navigate('/login');
   };
 
   return (
     <div className="login__container">
       <div className="login__header"></div>
       <div className="login__box">
-        <h1 className="login__title">Lenzzzz へようこそ</h1>
+        <h1 className="login__title">ユーザー登録</h1>
         <p className="login__input-title">ユーザー名</p>
         <input
           className="login__input"
@@ -67,19 +61,19 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button className="login__btn" onClick={handleSubmit}>
-          ログイン
+          登録
         </button>
         <button
           className="login__btn"
           onClick={() => {
-            handleRegistUser();
+            handleLogin();
           }}
         >
-          ユーザー登録
+          戻る
         </button>
       </div>
     </div>
   );
 };
 
-export default LoginForm;
+export default RegistUser;
