@@ -19,7 +19,7 @@ const Registrations = () => {
   const [productName, setProductName] = useState(false);
   const [purchaseDate, setPurchaseDate] = useState(false);
   const [warrantyNumber, setWarrantyNumber] = useState(false);
-  const [warrantyUnit, setWarrantyUnit] = useState(false);
+  const [warrantyUnit, setWarrantyUnit] = useState('年');
   const [retailer, setRetailer] = useState(false);
   const [productPhoto, setProductphoto] = useState('');
   const [warrantyPhoto, setWarrantyPhoto] = useState('');
