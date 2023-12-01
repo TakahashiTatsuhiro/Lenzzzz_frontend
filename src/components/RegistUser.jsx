@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import topImg from '../assets/hosyousyo.png';
 
 const RegistUser = () => {
   const [user_name, setUsername] = useState('');
@@ -33,7 +34,7 @@ const RegistUser = () => {
       }
     } catch (error) {
       console.log(error);
-      alert('登録に失敗しました。');
+      alert('入力したユーザー名はすでに使用されています');
     }
   };
 
@@ -43,7 +44,9 @@ const RegistUser = () => {
 
   return (
     <div className="login__container">
-      <div className="login__header"></div>
+      <div className="login__header">
+        <img src={topImg} alt="マップの画像" className="top__img" />
+      </div>
       <div className="login__box">
         <h1 className="login__title">ユーザー登録</h1>
         <p className="login__input-title">ユーザー名</p>
