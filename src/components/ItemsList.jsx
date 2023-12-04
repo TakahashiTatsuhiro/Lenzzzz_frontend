@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useEffect, useState } from "react";
 
 const ItemsList = () => {
   const navigate = useNavigate();
@@ -8,10 +8,10 @@ const ItemsList = () => {
   const [items, setItems] = useState([]);
 
   const handleLogin = () => {
-    navigate('/login');
+    navigate("/login");
   };
   const handleRegistration = () => {
-    navigate('/registrations');
+    navigate("/registrations");
   };
   const handleItemSelect = (idx) => {
     navigate(`/Items/show/${idx}`);
@@ -21,11 +21,15 @@ const ItemsList = () => {
     const getItems = async () => {
       try {
         // const url = 'https://lenzzzz-backend.onrender.com';
-        const url = 'http://localhost:3000';
+        const url = "http://localhost:3000";
+        // console.log(
+        //   "どこにフェッチしようとしてるの？",
+        //   url + `/${userId}/items`
+        // );
         const response = await fetch(url + `/${userId}/items`);
         const data = await response.json();
         if (response.ok) {
-          console.log('data', data);
+          // console.log("data", data);
           setItems(data);
         } else {
           setItems([]);

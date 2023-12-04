@@ -1,6 +1,6 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useEffect, useState } from "react";
 
 const DetailItem = () => {
   const navigate = useNavigate();
@@ -9,24 +9,24 @@ const DetailItem = () => {
   const [item, setItem] = useState({});
 
   const handleLogin = () => {
-    navigate('/login');
+    navigate("/login");
   };
   const handleRegistration = () => {
-    navigate('/registrations');
+    navigate("/registrations");
   };
   const handleItemLists = () => {
-    navigate('/items');
+    navigate("/items");
   };
 
   useEffect(() => {
     const getItems = async () => {
       try {
         // const url = 'https://lenzzzz-backend.onrender.com';
-        const url = 'http://localhost:3000';
+        const url = "http://localhost:3000";
         const response = await fetch(url + `/${userId}/items/${Number(index)}`);
         const data = await response.json();
         if (response.ok) {
-          console.log('data', data);
+          // console.log('data', data);
           setItem(data);
         } else {
           setItem({});
@@ -65,7 +65,7 @@ const DetailItem = () => {
         <p className="single__item__p">　{item.retailer}</p>
         <p className="single__item__p">・保証期間</p>
         <p className="single__item__p">
-          {'　' + item.warranty_number + item.warranty_unit}
+          {"　" + item.warranty_number + item.warranty_unit}
         </p>
         <p className="single__item__p">・保証書</p>
         <div className="single__item">
